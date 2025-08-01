@@ -12,7 +12,7 @@ from topics.blockchain_crypto import qa_blockchain_crypto
 st.set_page_config(page_title="Cyber Interview Prep", layout="wide")
 
 # Display logo
-st.image("logo.png", width=150)  # adjust width as needed
+st.image("logo.png", width=100)  # adjust width as needed
 st.title("🧠 Cyber Interview Preparation ")
 
 # Material Design-Inspired CSS
