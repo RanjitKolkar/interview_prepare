@@ -1,58 +1,125 @@
 qa_laws_standards = [
 
-    "IT Act, 2000 provides legal recognition to electronic records and is the foundation of cyber law in India.",
-    "Section 43 (IT Act) penalizes unauthorized access, data theft, virus attacks, and service disruption.",
-    "Section 66 deals with hacking and unauthorized digital access.",
-    "Section 66C handles identity theft through misuse of digital credentials.",
-    "Section 66D addresses impersonation via digital communication like phishing.",
-    "Section 66E criminalizes capturing/transmitting private images without consent.",
-    "Section 67 penalizes publishing obscene electronic content.",
-    "Section 69 gives authority for interception, monitoring, and decryption for security.",
-    "Section 72 punishes data disclosure without consent.",
-    "Section 79 gives safe harbour to intermediaries unless they abet crime.",
-    "Section 65B (Indian Evidence Act) defines admissibility of electronic evidence.",
-    "Emails, chat logs, and documents are valid evidence under 65B with certification.",
-    "Digital evidence must follow chain of custody for legal use.",
-    "Drives, phones, USBs are admissible if acquired with integrity.",
-    "Section 91 CrPC allows document production requests in investigations.",
-    "Section 92 CrPC allows court to get data from ISPs or telecom.",
-    "Section 100 CrPC permits home/premise search for digital evidence.",
-    "Section 165 CrPC enables urgent search without warrant in critical cases.",
-    "Section 167 CrPC is used to extend custody when forensic results are awaited.",
-    "Section 420 IPC deals with cheating – including online fraud.",
-    "Sections 463–465 IPC are about forgery including digital documents.",
-    "Section 468 IPC applies to forgery with intent to defraud.",
-    "Section 469 IPC targets reputational harm via forged content.",
-    "Companies Act Section 447 punishes corporate fraud, linked to forensic audits.",
-    "Privacy is protected under Article 21 – right to privacy in data collection.",
-    "Indian Telegraph Act allows legal interception under controlled conditions.",
-    "Aadhaar Act prevents unauthorized use of biometric or identity data.",
-    "DPDP Act 2023 regulates digital personal data collection and processing.",
-    "DPDP mandates user consent and breach reporting.",
-    "Lawful Interception and Monitoring is done under IT/Telecom rules.",
-    "Unauthorized interception is unconstitutional.",
-    "Digital evidence must be authentic, validated by hash functions.",
-    "Reports should be signed and traceable to certified examiners.",
-    "Recovered encrypted or deleted files are valid with proper method documentation.",
-    "Volatile data like RAM should be captured during live sessions with forensic tools.",
-    "Metadata is essential for proving document authorship or edits.",
-    "Screenshots or photos of evidence are secondary; may need corroboration.",
-    "Social media content can be evidence if lawfully preserved.",
-    "WhatsApp chats are allowed if certified under 65B.",
-    "Email headers must be intact to prove source and timeline.",
-    "Write blockers preserve drive integrity during imaging.",
-    "Hash mismatch can disqualify evidence in court.",
-    "OSINT is used for legal data gathering from public platforms.",
-    "Cloud data acquisition requires legal request to provider.",
-    "Phones must be isolated or blocked before forensics (Faraday bag/Airplane mode).",
-    "Timestamps may be inconsistent due to time zone or user edits.",
-    "Section 354D IPC punishes cyberstalking – common in harassment cases.",
-    "Evidence must originate from trusted source (original media).",
-    "Investigators should document all steps in acquisition/analysis.",
-    "Expert witnesses often explain digital forensic procedures to the court.",
+    ("What is Cyber Law?",
+     "1. Cyber Law refers to the legal framework governing internet-related activities.\n"
+     "2. It includes laws related to cybercrimes, electronic transactions, data privacy, and intellectual property.\n"
+     "3. It ensures legal enforcement, regulation, and accountability in digital communication and online behavior.\n"
+     "4. In India, the primary statute is the Information Technology (IT) Act, 2000."),
+
+    ("What is the Information Technology Act, 2000?",
+     "1. The IT Act is India's primary law dealing with cybercrime and electronic commerce.\n"
+     "2. It validates digital signatures and electronic records.\n"
+     "3. Sections of the act address hacking, identity theft, data breach, child pornography, etc.\n"
+     "4. It also defines responsibilities of intermediaries like ISPs and social media platforms."),
+
+    ("What are key sections of the IT Act related to cybercrime?",
+     "1. Section 43 – Unauthorized access and damage to computers.\n"
+     "2. Section 66 – Hacking and identity theft.\n"
+     "3. Section 66C – Punishment for identity theft.\n"
+     "4. Section 66D – Cheating by impersonation using a computer.\n"
+     "5. Section 67 – Publishing obscene material online.\n"
+     "6. Section 69 – Government powers to intercept and monitor data."),
+
+    ("What laws in IPC relate to cybercrime?",
+     "1. Section 378/420 – Theft and cheating (can apply to cyber fraud).\n"
+     "2. Section 464/468 – Forgery of electronic records.\n"
+     "3. Section 354D – Cyberstalking.\n"
+     "4. Section 499 – Online defamation.\n"
+     "5. Section 507 – Anonymous criminal intimidation via digital means."),
+
+    ("What is Section 79A of the IT Act?",
+     "1. It empowers the Central Government to notify any agency as an Examiner of Electronic Evidence.\n"
+     "2. These certified agencies analyze and provide reports admissible in court under the Evidence Act.\n"
+     "3. Forensic labs (like CFSL, SFSL) may be designated as such."),
+
+    ("What is Section 65B of the Indian Evidence Act?",
+     "1. Section 65B allows digital records to be admissible in court if accompanied by a certificate.\n"
+     "2. The certificate must state the method and device from which the electronic evidence was derived.\n"
+     "3. It ensures authenticity and prevents tampering claims in legal proceedings."),
+
+    ("What powers does CrPC provide for digital evidence collection?",
+     "1. Section 91 – Allows police to require the production of documents and digital records.\n"
+     "2. Section 92 – Allows magistrates to obtain digital data from postal or telecom authorities.\n"
+     "3. Section 100 – Allows lawful search and seizure, including computers.\n"
+     "4. Section 165 – Empowers police to search premises for evidence without warrant under certain circumstances."),
+
+    ("What is meant by chain of custody in digital forensics?",
+     "1. It refers to the documented handling of digital evidence from collection to court presentation.\n"
+     "2. Each person who handles the evidence signs and logs their actions.\n"
+     "3. Maintains the integrity and admissibility of the evidence in court."),
+
+    ("What is the role of CERT-In?",
+     "1. CERT-In is the Indian Computer Emergency Response Team.\n"
+     "2. It handles cybersecurity threats, vulnerabilities, and incident response.\n"
+     "3. It mandates incident reporting by organizations under the IT Act."),
+
+    ("What are intermediary guidelines under the IT Rules 2021?",
+     "1. Platforms like Facebook, WhatsApp, etc., are considered intermediaries.\n"
+     "2. They must publish grievance redressal mechanisms and appoint officers.\n"
+     "3. Significant platforms must trace originators of messages and remove unlawful content.\n"
+     "4. Failure to comply may lead to legal liability."),
+
+    ("What is Section 69 of the IT Act?",
+     "1. It empowers the government to intercept, decrypt, or monitor any digital information.\n"
+     "2. It applies when national security, sovereignty, or public order is at risk.\n"
+     "3. Requires written direction and oversight to prevent misuse."),
+
+    ("How does Indian law define and handle cyber terrorism?",
+     "1. Section 66F of the IT Act defines cyber terrorism.\n"
+     "2. It includes unauthorized access to computer resources with intent to threaten unity, integrity, or security of India.\n"
+     "3. It is punishable with life imprisonment."),
+
+    ("What is the role of digital forensics in legal proceedings?",
+     "1. It involves scientific recovery and analysis of data from digital devices.\n"
+     "2. Forensic reports support or contradict claims in court.\n"
+     "3. Admissibility depends on correct procedure and expert certification under Section 79A and 65B."),
+
+    ("What is a forensic image?",
+     "1. It is a bit-by-bit copy of a digital storage device.\n"
+     "2. Ensures complete data capture, including deleted and hidden files.\n"
+     "3. It is write-protected to preserve evidence integrity."),
+
+    ("What Indian agencies handle digital crime investigation?",
+     "1. Cyber Crime Cell of State Police Departments.\n"
+     "2. Central Bureau of Investigation (CBI).\n"
+     "3. National Cyber Crime Reporting Portal.\n"
+     "4. CERT-In and NCIIPC (for critical infrastructure).\n"
+     "5. Forensic Science Labs (CFSL/SFSL)."),
+
+    ("What are the obligations of organizations under Indian cyber law?",
+     "1. Protect personal data of users.\n"
+     "2. Report cyber incidents to CERT-In.\n"
+     "3. Appoint grievance officers.\n"
+     "4. Maintain logs and provide them when lawfully demanded."),
+
+    ("How is intellectual property protected under cyber law?",
+     "1. Copyright and trademarks apply to digital content like software, websites, videos, etc.\n"
+     "2. Unauthorized duplication or distribution is a punishable offence.\n"
+     "3. ISPs must remove infringing content on notice (safe harbor rule)."),
+
+    ("What is data protection law status in India?",
+     "1. India currently relies on IT Act 2000 and SPDI Rules for data protection.\n"
+     "2. The Digital Personal Data Protection Act, 2023 is passed to regulate personal data usage.\n"
+     "3. It emphasizes informed consent, limited storage, and data fiduciary accountability."),
+
+    ("What is Section 72 of the IT Act?",
+     "1. It punishes breach of confidentiality and privacy.\n"
+     "2. Any person with access to digital information due to lawful authority misusing it is liable.\n"
+     "3. Punishment includes imprisonment up to 2 years or fine up to ₹1 lakh."),
+
+    ("How are children protected online under Indian cyber law?",
+     "1. Section 67B of the IT Act prohibits child sexual abuse material (CSAM).\n"
+     "2. The POCSO Act punishes cyber grooming and exploitation.\n"
+     "3. Social media companies must take down CSAM promptly."),
+
+    ("Can digital evidence from cloud storage be used in Indian courts?",
+     "1. Yes, if extracted and documented properly.\n"
+     "2. Chain of custody and Section 65B certification must be maintained.\n"
+     "3. Cloud logs, timestamps, and access logs often support legal claims."),
+
 
     # --- Section 1: Cyber Law Fundamentals ---
-    ("What is Cyber Law",
+    ("What is Cyber Law?",
      "Cyber Law refers to the legal framework that governs activities over the internet and digital communication systems."),
 
     ("Why is Cyber Law important?",
