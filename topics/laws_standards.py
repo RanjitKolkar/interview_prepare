@@ -52,7 +52,7 @@ qa_laws_standards = [
     "Expert witnesses often explain digital forensic procedures to the court.",
 
     # --- Section 1: Cyber Law Fundamentals ---
-    ("What is Cyber Law?",
+    ("What is Cyber Law",
      "Cyber Law refers to the legal framework that governs activities over the internet and digital communication systems."),
 
     ("Why is Cyber Law important?",
