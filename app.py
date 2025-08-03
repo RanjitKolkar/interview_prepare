@@ -69,7 +69,9 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
-
+def convert_to_paragraph(text):
+    # Remove numeric bulleting and merge lines
+    return re.sub(r'\n?\s*\d+\.\s*', ' ', text).strip()
 # Topics dictionary
 topics = {
     "Basic Computer Networks": qa_basic_networks,
@@ -102,9 +104,7 @@ else:
         </div>
         """, unsafe_allow_html=True)
 
-def convert_to_paragraph(text):
-    # Remove numeric bulleting and merge lines
-    return re.sub(r'\n?\s*\d+\.\s*', ' ', text).strip()
+
 # Footer
 st.sidebar.markdown("---")
 st.sidebar.markdown("🎓 Developed for NFSU Cyber Interview Prep")
