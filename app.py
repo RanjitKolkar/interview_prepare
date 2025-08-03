@@ -1,5 +1,5 @@
 import streamlit as st
-import re
+
 # Import all topic question lists
 from topics.basic_networks import qa_basic_networks
 from topics.network_security import qa_network_security
@@ -69,9 +69,7 @@ st.markdown("""
     }
 </style>
 """, unsafe_allow_html=True)
-def convert_to_paragraph(text):
-    # Remove numeric bulleting and merge lines
-    return re.sub(r'\n?\s*\d+\.\s*', ' ', text).strip()
+
 # Topics dictionary
 topics = {
     "Basic Computer Networks": qa_basic_networks,
@@ -94,16 +92,13 @@ qa_list = topics[selected_topic]
 if not qa_list:
     st.info("🚧 This section is under development. Check back soon!")
 else:
-
     for idx, (question, answer) in enumerate(qa_list, start=1):
-        formatted_answer = convert_to_paragraph(answer)
         st.markdown(f"""
         <div class='question-box'>
             <div class='question'>{idx}. {question}</div>
-            <div class='answer'>{formatted_answer}</div>
+            <div class='answer'>{answer}</div>
         </div>
         """, unsafe_allow_html=True)
-
 
 # Footer
 st.sidebar.markdown("---")
