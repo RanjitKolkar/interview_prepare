@@ -384,7 +384,7 @@ def format_interview_answer(raw_answer: str, question: str = ""):
         clean_example = example_text.replace("\n", nl)
         html_output += (
             f"<div class='example-box'>"
-            f"<div class='example-header'>💡 Interview Practical Example</div>"
+            f"<div class='example-header'>💡 Example</div>"
             f"<div>{clean_example}</div>"
             f"</div>"
         )
