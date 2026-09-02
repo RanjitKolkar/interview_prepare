@@ -533,9 +533,35 @@ else:
                 st.markdown(formatted_ans, unsafe_allow_html=True)
 
 # Footer
-st.markdown("<br><hr>", unsafe_allow_html=True)
-st.markdown("""
-<div style='text-align: center; color: #94A3B8; font-size: 13px; padding-bottom: 20px;'>
-    🧠 <b>Cyber & Tech Interview Preparation Hub</b> • Crisp explanations, key characteristics, and real-world scenarios.
-</div>
-""", unsafe_allow_html=True)
+st.markdown("<br><hr style='border-color:#334155; margin-bottom:0;'>", unsafe_allow_html=True)
+st.markdown(
+"<div style='background:linear-gradient(135deg,#0F172A 0%,#1E293B 100%);"
+"border-top:3px solid #6366F1; padding:28px 32px 20px 32px; text-align:center;'>"
+
+"<div style='display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:14px;'>"
+"<img src='https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/National_Forensic_Sciences_University_Logo.png/120px-National_Forensic_Sciences_University_Logo.png' "
+"style='height:48px; border-radius:6px;' alt='NFSU Logo'>"
+"<div style='text-align:left;'>"
+"<div style='color:#E2E8F0; font-size:15px; font-weight:700; letter-spacing:0.3px;'>NFSU Goa Coding Club &amp; Placement Cell</div>"
+"<div style='color:#94A3B8; font-size:12px; margin-top:2px;'>National Forensic Sciences University — Goa Campus</div>"
+"</div>"
+"</div>"
+
+"<div style='color:#CBD5E1; font-size:13px; margin-bottom:10px;'>"
+"🧠 <b>Cyber &amp; Tech Interview Preparation Hub</b> — Crisp explanations, key characteristics, and real-world scenarios."
+"</div>"
+
+"<div style='background:#1E293B; border:1px solid #F59E0B44; border-left:4px solid #F59E0B; "
+"border-radius:8px; padding:12px 20px; max-width:700px; margin:0 auto 14px auto; text-align:left;'>"
+"<div style='color:#F59E0B; font-size:12px; font-weight:700; margin-bottom:4px;'>⚠️ Disclaimer</div>"
+"<div style='color:#CBD5E1; font-size:12px; line-height:1.6;'>"
+"The content on this platform is curated for interview preparation purposes and may occasionally contain inaccuracies or outdated information. "
+"If you find any incorrect content, broken functionality, or anything that needs to be updated or reported, please reach out at "
+"<a href='mailto:ranjit.kolkar@nfsu.ac.in' style='color:#6366F1; text-decoration:none; font-weight:600;'>ranjit.kolkar@nfsu.ac.in</a>."
+"</div>"
+"</div>"
+
+"<div style='color:#475569; font-size:11px;'>© 2025 NFSU Goa Coding Club &amp; Placement Cell · Built with ❤️ for NFSU Students</div>"
+"</div>",
+unsafe_allow_html=True
+)
