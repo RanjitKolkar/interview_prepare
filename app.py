@@ -234,15 +234,15 @@ with st.sidebar:
 
     st.markdown("<hr style='margin: 12px 0;'>", unsafe_allow_html=True)
 
-    # Quick Statistics Box
-    st.markdown(f"""
-    <div class="sidebar-stats">
-        <div style="font-size:12px; font-weight:700; color:#64748B; text-transform:uppercase; margin-bottom:8px;">Knowledge Base</div>
-        <div class="stat-row"><span>📚 Topics</span><span class="stat-val">{len(topics)}</span></div>
-        <div class="stat-row"><span>❓ Questions</span><span class="stat-val">{total_all_questions}</span></div>
-        <div class="stat-row"><span>⭐ Saved Bookmarks</span><span class="stat-val">{len(st.session_state.bookmarks)}</span></div>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown(
+        f"<div class='sidebar-stats'>"
+        f"<div style='font-size:12px; font-weight:700; color:#64748B; text-transform:uppercase; margin-bottom:8px;'>Knowledge Base</div>"
+        f"<div class='stat-row'><span>📚 Topics</span><span class='stat-val'>{len(topics)}</span></div>"
+        f"<div class='stat-row'><span>❓ Questions</span><span class='stat-val'>{total_all_questions}</span></div>"
+        f"<div class='stat-row'><span>⭐ Saved Bookmarks</span><span class='stat-val'>{len(st.session_state.bookmarks)}</span></div>"
+        f"</div>",
+        unsafe_allow_html=True
+    )
 
     # Mode Selector
     st.markdown("##### 🎯 Practice Mode")
@@ -311,26 +311,34 @@ def format_interview_answer(raw_answer: str):
 
         html_output = ""
         if direct_text:
-            html_output += f"<div class='answer-lead'>{direct_text}</div>"
+            nl = "<br>"
+            clean_direct = direct_text.replace("\n", nl)
+            html_output += f"<div class='answer-lead'>{clean_direct}</div>"
 
         if chars_text:
-            formatted_chars = "<br>".join(
-                [f"• {line.lstrip('•*- ')}" for line in chars_text.split("\n") if line.strip()]
+            items = []
+            for line in chars_text.split("\n"):
+                clean = line.strip()
+                if clean:
+                    bullet_cleaned = re.sub(r'^[•\*\-\s]+', '', clean)
+                    items.append(f"<li style='margin-bottom:6px;'>{bullet_cleaned}</li>")
+            formatted_chars = "".join(items)
+            html_output += (
+                f"<div class='characteristics-box'>"
+                f"<div class='characteristics-header'>⚡ Key Characteristics & Mechanisms</div>"
+                f"<ul style='margin: 6px 0 0 18px; padding: 0; color:#1E293B;'>{formatted_chars}</ul>"
+                f"</div>"
             )
-            html_output += f"""
-            <div class='characteristics-box'>
-                <div class='characteristics-header'>⚡ Key Characteristics & Mechanisms</div>
-                {formatted_chars}
-            </div>
-            """
 
         if example_text:
-            html_output += f"""
-            <div class='example-box'>
-                <div class='example-header'>💡 Interview Practical Example</div>
-                {example_text}
-            </div>
-            """
+            nl = "<br>"
+            clean_example = example_text.replace("\n", nl)
+            html_output += (
+                f"<div class='example-box'>"
+                f"<div class='example-header'>💡 Interview Practical Example</div>"
+                f"<div>{clean_example}</div>"
+                f"</div>"
+            )
         return html_output
     else:
         lines = [line.strip() for line in raw_answer.split("\n") if line.strip()]
@@ -371,15 +379,16 @@ st.markdown(f"""
 # Random Drill Pop-up Banner if triggered
 if st.session_state.random_drill:
     drill = st.session_state.random_drill
-    st.markdown(f"""
-    <div class="drill-banner">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-            <span style="font-weight:800; color:#92400E; font-size:14px; text-transform:uppercase; letter-spacing:0.5px;">🎲 Rapid Interview Pop-Quiz</span>
-            <span style="font-size:12px; font-weight:600; background:#FDE68A; color:#78350F; padding:2px 8px; border-radius:6px;">{drill['topic']}</span>
-        </div>
-        <div style="font-size:18px; font-weight:700; color:#78350F; margin: 10px 0 12px 0;">{drill['question']}</div>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown(
+        f"<div class='drill-banner'>"
+        f"<div style='display:flex; justify-content:space-between; align-items:center;'>"
+        f"<span style='font-weight:800; color:#92400E; font-size:14px; text-transform:uppercase; letter-spacing:0.5px;'>🎲 Rapid Interview Pop-Quiz</span>"
+        f"<span style='font-size:12px; font-weight:600; background:#FDE68A; color:#78350F; padding:2px 8px; border-radius:6px;'>{drill['topic']}</span>"
+        f"</div>"
+        f"<div style='font-size:18px; font-weight:700; color:#78350F; margin: 10px 0 12px 0;'>{drill['question']}</div>"
+        f"</div>",
+        unsafe_allow_html=True
+    )
 
     with st.expander("👁️ Reveal Pop-Quiz Answer", expanded=False):
         st.markdown(format_interview_answer(drill['answer']), unsafe_allow_html=True)
@@ -461,10 +470,11 @@ else:
             col_q, col_act = st.columns([0.92, 0.08])
 
             with col_q:
-                st.markdown(f"""
-                <span class='q-badge'>{top_name} • Q{idx}</span>
-                <div class='q-title'>{question}</div>
-                """, unsafe_allow_html=True)
+                st.markdown(
+                    f"<span class='q-badge'>{top_name} • Q{idx}</span>"
+                    f"<div class='q-title'>{question}</div>",
+                    unsafe_allow_html=True
+                )
 
             with col_act:
                 star_label = "⭐" if is_bookmarked else "☆"
