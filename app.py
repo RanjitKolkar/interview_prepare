@@ -12,6 +12,10 @@ from topics.scada_ot import qa_scada_ot
 from topics.blockchain_crypto import qa_blockchain_crypto
 from topics.data_science import qa_data_science
 from topics.cloud_devsecops import qa_cloud_devsecops
+from topics.soc_incident_response import qa_soc_ir
+from topics.appsec_api_security import qa_appsec
+from topics.identity_ad_security import qa_identity_ad
+from topics.ai_security import qa_ai_security
 
 # Page Configuration
 st.set_page_config(
@@ -204,9 +208,13 @@ st.markdown("""
 
 # Topics dictionary with category icons
 topics = {
+    "🛡️ SOC, IR & Threat Hunting": qa_soc_ir,
+    "🔐 AppSec & API Security (OWASP)": qa_appsec,
+    "🔑 Active Directory & IAM Security": qa_identity_ad,
+    "☁️ Cloud Security & DevSecOps": qa_cloud_devsecops,
+    "🤖 AI & LLM Security (OWASP LLM)": qa_ai_security,
     "📊 Data Science": qa_data_science,
     "🧠 AI, Stats, ML & Maths": qa_ai_ml_stats,
-    "☁️ Cloud Security & DevSecOps": qa_cloud_devsecops,
     "🌐 Basic Computer Networks": qa_basic_networks,
     "🛡️ Network & Cyber Security": qa_network_security,
     "🔍 Digital Forensics": qa_digital_forensics,
@@ -248,7 +256,7 @@ with st.sidebar:
     st.markdown("##### 🎯 Practice Mode")
     study_mode = st.radio(
         "Select Mode",
-        options=["📖 Study Mode (Full Q&A)", "🎯 Flashcard Mode (Recall Test)", "⭐ Saved Bookmarks"],
+        options=["📖 Study Mode (Full Q&A)", "🎯 Mock Interview Mode (Recall Test)", "⭐ Saved Bookmarks"],
         label_visibility="collapsed"
     )
 
@@ -264,9 +272,9 @@ with st.sidebar:
 
     st.markdown("<hr style='margin: 14px 0;'>", unsafe_allow_html=True)
 
-    # Interactive Features: Random Drill
-    st.markdown("##### ⚡ Quick Practice Drill")
-    if st.button("🎲 Pop-Quiz Question", use_container_width=True, type="primary"):
+    # Interactive Features: Mock Interview Drill
+    st.markdown("##### 🎯 Mock Interview Drill")
+    if st.button("🎲 Mock Interview Question", use_container_width=True, type="primary"):
         # Select random question either from current topic or any topic
         curr_list = topics[selected_topic]
         if curr_list:
@@ -382,7 +390,7 @@ if st.session_state.random_drill:
     st.markdown(
         f"<div class='drill-banner'>"
         f"<div style='display:flex; justify-content:space-between; align-items:center;'>"
-        f"<span style='font-weight:800; color:#92400E; font-size:14px; text-transform:uppercase; letter-spacing:0.5px;'>🎲 Rapid Interview Pop-Quiz</span>"
+        f"<span style='font-weight:800; color:#92400E; font-size:14px; text-transform:uppercase; letter-spacing:0.5px;'>🎯 Mock Interview Drill</span>"
         f"<span style='font-size:12px; font-weight:600; background:#FDE68A; color:#78350F; padding:2px 8px; border-radius:6px;'>{drill['topic']}</span>"
         f"</div>"
         f"<div style='font-size:18px; font-weight:700; color:#78350F; margin: 10px 0 12px 0;'>{drill['question']}</div>"
@@ -390,19 +398,19 @@ if st.session_state.random_drill:
         unsafe_allow_html=True
     )
 
-    with st.expander("👁️ Reveal Pop-Quiz Answer", expanded=False):
+    with st.expander("👁️ Reveal Mock Interview Answer", expanded=False):
         st.markdown(format_interview_answer(drill['answer']), unsafe_allow_html=True)
 
     col_next, col_close = st.columns([1, 4])
     with col_next:
-        if st.button("🔄 Another Question", key="drill_next"):
+        if st.button("🔄 Next Mock Question", key="drill_next"):
             curr_list = topics[selected_topic]
             if curr_list:
                 rq, ra = random.choice(curr_list)
                 st.session_state.random_drill = {"topic": selected_topic, "question": rq, "answer": ra}
                 st.rerun()
     with col_close:
-        if st.button("✖️ Dismiss Drill", key="drill_close"):
+        if st.button("✖️ End Mock Drill", key="drill_close"):
             st.session_state.random_drill = None
             st.rerun()
     st.markdown("<hr style='margin: 16px 0 24px 0;'>", unsafe_allow_html=True)
@@ -489,8 +497,8 @@ else:
             # Display based on selected study mode
             formatted_ans = format_interview_answer(answer)
 
-            if "Flashcard" in study_mode:
-                with st.expander("👁️ Reveal Interview Answer & Examples", expanded=False):
+            if "Mock Interview" in study_mode or "Flashcard" in study_mode:
+                with st.expander("👁️ Reveal Mock Interview Answer & Examples", expanded=False):
                     st.markdown(formatted_ans, unsafe_allow_html=True)
             else:
                 st.markdown(formatted_ans, unsafe_allow_html=True)
