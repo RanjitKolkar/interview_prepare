@@ -206,22 +206,37 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# Topics dictionary with category icons
-topics = {
-    "🛡️ SOC, IR & Threat Hunting": qa_soc_ir,
-    "🔐 AppSec & API Security (OWASP)": qa_appsec,
-    "🔑 Active Directory & IAM Security": qa_identity_ad,
-    "☁️ Cloud Security & DevSecOps": qa_cloud_devsecops,
-    "🤖 AI & LLM Security (OWASP LLM)": qa_ai_security,
-    "📊 Data Science": qa_data_science,
-    "🧠 AI, Stats, ML & Maths": qa_ai_ml_stats,
-    "🌐 Basic Computer Networks": qa_basic_networks,
-    "🛡️ Network & Cyber Security": qa_network_security,
-    "🔍 Digital Forensics": qa_digital_forensics,
-    "📜 Laws & Standards": qa_laws_standards,
-    "🏭 SCADA / OT Security": qa_scada_ot,
-    "⛓️ Blockchain & Cryptography": qa_blockchain_crypto,
+# Grouped topic hierarchy: Main Category -> {sub-topic label: qa_list}
+topic_groups = {
+    "🛡️ Cyber Security": {
+        "SOC, IR & Threat Hunting": qa_soc_ir,
+        "AppSec & API Security (OWASP)": qa_appsec,
+        "Active Directory & IAM Security": qa_identity_ad,
+        "Cloud Security & DevSecOps": qa_cloud_devsecops,
+        "AI & LLM Security (OWASP LLM Top 10)": qa_ai_security,
+        "Network & Cyber Security": qa_network_security,
+        "Digital Forensics": qa_digital_forensics,
+        "Laws & Standards": qa_laws_standards,
+        "SCADA / OT Security": qa_scada_ot,
+    },
+    "🌐 Networking": {
+        "Basic Computer Networks": qa_basic_networks,
+    },
+    "🤖 Data & AI": {
+        "Data Science": qa_data_science,
+        "AI, Statistics, ML & Maths": qa_ai_ml_stats,
+    },
+    "⛓️ Emerging Tech": {
+        "Blockchain & Cryptography": qa_blockchain_crypto,
+    },
 }
+
+# Flat topics dict (used for search, bookmarks, drill)
+topics = {}
+for group_name, subtopics in topic_groups.items():
+    for sub_label, qa_list in subtopics.items():
+        display_label = f"{sub_label} ({len(qa_list)})"
+        topics[display_label] = qa_list
 
 total_all_questions = sum(len(q_list) for q_list in topics.values())
 
@@ -262,20 +277,33 @@ with st.sidebar:
 
     st.markdown("<hr style='margin: 12px 0;'>", unsafe_allow_html=True)
 
-    # Topic Selector
+    # Topic Selector — grouped
     st.markdown("##### 📚 Select Topic")
-    selected_topic = st.radio(
-        "Choose a Topic",
-        list(topics.keys()),
+
+    group_labels = list(topic_groups.keys())
+    selected_group = st.selectbox(
+        "Main Category",
+        group_labels,
         label_visibility="collapsed"
     )
+
+    subtopic_dict = topic_groups[selected_group]
+    subtopic_options = [f"{k} ({len(v)})" for k, v in subtopic_dict.items()]
+
+    selected_subtopic = st.radio(
+        "Sub-topic",
+        subtopic_options,
+        label_visibility="collapsed"
+    )
+
+    # Map back to full display label used in `topics`
+    selected_topic = selected_subtopic   # already in "Name (N)" format
 
     st.markdown("<hr style='margin: 14px 0;'>", unsafe_allow_html=True)
 
     # Interactive Features: Mock Interview Drill
     st.markdown("##### 🎯 Mock Interview Drill")
     if st.button("🎲 Mock Interview Question", use_container_width=True, type="primary"):
-        # Select random question either from current topic or any topic
         curr_list = topics[selected_topic]
         if curr_list:
             rand_q, rand_a = random.choice(curr_list)
